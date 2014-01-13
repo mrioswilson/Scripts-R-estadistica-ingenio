@@ -2,16 +2,16 @@
 rm(list=ls());
 
 #Mensaje de Bienvenida
-cat('Ingrese número de alumnos')
+cat('Ingrese nï¿½mero de alumnos')
 n <- as.numeric(scan(file = "", what = "", nmax = 1, quiet=TRUE))
 
-##Generación de variables (Actividad 1)
+##Generaciï¿½n de variables (Actividad 1)
 edad <- round(runif(n,14,15)); sexo <- trunc(rnorm(n,1,0.5)); lic <- rep(0,n); phogar <- round(rnorm(n,3,0.5)); lhogar <- round(rnorm(n,2,0.5)); chogar <- round(rnorm(n,2,0.5)); vhogar <- round(rnorm(n,2,0.5));
 for (i in seq(along=edad)){  ##Arreglando la variable sexo para que queden 1s y 0s
 	if ( sexo[i]>1 | sexo[i]<0) {
 		sexo[i] <- 0}
 };
-for (i in seq(along=lhogar)){  ##No permitir que existan más personas con licencia en el hogar que personas en el hogar
+for (i in seq(along=lhogar)){  ##No permitir que existan mï¿½s personas con licencia en el hogar que personas en el hogar
 	if (lhogar[i]>phogar[i]) { 
 		lhogar[i]=phogar[i]}
 };
@@ -21,10 +21,10 @@ for (i in seq(along=vhogar)) { ##No permitir que existan personas que no conduzc
 };
 
 sexonum <- sort(sexo); ##Ordenar por sexo
-sexocat <- factor(sexonum, labels=c("Masculino", "Femenino")); ##Creacion de variable categórica para la variable sexo
+sexocat <- factor(sexonum, labels=c("Masculino", "Femenino")); ##Creacion de variable categï¿½rica para la variable sexo
 porsex <- c(round((length(which(sexonum==1))/n)*100),round((length(which(sexonum<1))/n)*100));
 
-##Creación de data frame (Actividad 2)
+##Creaciï¿½n de data frame (Actividad 2)
 datos <- data.frame(EDAD=edad, SEXO=sexocat, LICENCIA=lic, HABITANTESHOGAR=phogar, LICENCIAHOGAR=lhogar, CONDUCTORESHOGAR=chogar, VEHICULOSHOGAR=vhogar);
 
 ##Display de datos
@@ -73,9 +73,9 @@ scan(file = "", what = "", nmax = 1, quiet=TRUE);
 
 ##Exportar tabla de datos actividad 2
 
-write.table(datos, file='simulacion.xls', sep=" ", row.names=FALSE)
+write.table(datos, file='simulacion.xls', sep="\t", row.names=FALSE)
 
-##Gerenación de gráficos actividad 4
+##Gerenaciï¿½n de grï¿½ficos actividad 4
 m <- matrix(1:8, 2, 4, byrow=TRUE);
 pdf('graficos actividad 3.pdf')
 layout(m);
@@ -83,7 +83,7 @@ hist(edad, main="Edad", col="red", xlab="edades", ylab="frecuencia");
 names(porsex) <- c('Varones', 'Mujeres')
 lbls <- paste(names(porsex), porsex)
 lbls <- paste(lbls, "%", sep="")
-pie(porsex, labels=lbls, main="Distribución alumnos", col=rainbow(length(lbls)))
+pie(porsex, labels=lbls, main="Distribuciï¿½n alumnos", col=rainbow(length(lbls)))
 hist(lic, main="Habitantes Hogar", col="blue", xlab="Alumnos con licencia", ylab="frecuencia")
 hist(phogar, main="Personas por hogar", col="red", xlab="Personas por hogar", ylab="frecuencia")
 hist(lhogar, main="Personas con licencia p/h", col="green", xlab="Personas con licencia p/h", ylab="frecuencia")
