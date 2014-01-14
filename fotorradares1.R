@@ -1,17 +1,32 @@
 ##Limpiar workspace
+
 rm(list=ls());
 
 #Mensaje de Bienvenida
-cat('Ingrese nï¿½mero de alumnos')
-n <- as.numeric(scan(file = "", what = "", nmax = 1, quiet=TRUE))
 
-##Generaciï¿½n de variables (Actividad 1)
+cat('Ingrese número de alumnos:')
+n <- as.numeric(scan(file = "", what = "", nmax = 1, quiet=TRUE))
+cat('Los códigos de los cursos son los siguientes:')
+scan(file = "", what = "", nmax = 1, quiet=TRUE)
+cat('[0] 6° Básico, [1] 7° Básico, [2] 8° Básico')
+scan(file = "", what = "", nmax = 1, quiet=TRUE)
+cat('[3] 1° Medio ,[4] 2° Medio, [5] 3° Medio Plan Común')
+scan(file = "", what = "", nmax = 1, quiet=TRUE)
+cat('[6] 3° Medio Electivo, [7] 4° Medio Plan Común, [8] 4° Medio Electivo')
+scan(file = "", what = "", nmax = 1, quiet=TRUE)
+cat('Ingrese el código del curso de los alumnos:')
+curso <- as.numeric(scan(file = "", what = "", nmax = 1, quiet=TRUE))
+
+if (curso %in% 0:8) { 
+
+##Generación de variables (Actividad 1)
+
 edad <- round(runif(n,14,15)); sexo <- trunc(rnorm(n,1,0.5)); lic <- rep(0,n); phogar <- round(rnorm(n,3,0.5)); lhogar <- round(rnorm(n,2,0.5)); chogar <- round(rnorm(n,2,0.5)); vhogar <- round(rnorm(n,2,0.5));
 for (i in seq(along=edad)){  ##Arreglando la variable sexo para que queden 1s y 0s
 	if ( sexo[i]>1 | sexo[i]<0) {
 		sexo[i] <- 0}
 };
-for (i in seq(along=lhogar)){  ##No permitir que existan mï¿½s personas con licencia en el hogar que personas en el hogar
+for (i in seq(along=lhogar)){  ##No permitir que existan más personas con licencia en el hogar que personas en el hogar
 	if (lhogar[i]>phogar[i]) { 
 		lhogar[i]=phogar[i]}
 };
@@ -21,10 +36,10 @@ for (i in seq(along=vhogar)) { ##No permitir que existan personas que no conduzc
 };
 
 sexonum <- sort(sexo); ##Ordenar por sexo
-sexocat <- factor(sexonum, labels=c("Masculino", "Femenino")); ##Creacion de variable categï¿½rica para la variable sexo
+sexocat <- factor(sexonum, labels=c("Masculino", "Femenino")); ##Creacion de variable categórica para la variable sexo
 porsex <- c(round((length(which(sexonum==1))/n)*100),round((length(which(sexonum<1))/n)*100));
 
-##Creaciï¿½n de data frame (Actividad 2)
+##Creación de data frame (Actividad 2)
 datos <- data.frame(EDAD=edad, SEXO=sexocat, LICENCIA=lic, HABITANTESHOGAR=phogar, LICENCIAHOGAR=lhogar, CONDUCTORESHOGAR=chogar, VEHICULOSHOGAR=vhogar);
 
 ##Display de datos
@@ -39,6 +54,7 @@ for (i in seq(along=porchogar)) { ##Calculo aproximado de vector de porcentajes 
 	porchogar[i] <- round((chogar[i]/phogar[i])*100)
 }
 #Calculo de medianas y medias.
+
 edad4 <- c(round(mean(edad)),round(median(edad)));
 phogar4 <- c(round(mean(phogar)),round(median(phogar)));
 porlhogar4 <- c(round(mean(porlhogar)),round(median(porlhogar))); 
@@ -46,6 +62,7 @@ porchogar4 <- c(round(mean(porchogar)),round(median(porchogar)));
 vhogar4 <- c(round(mean(vhogar)),round(median(vhogar))); 
 
 ##Display de resultados
+
 print('La media y la mediana de las edades son:');
 scan(file = "", what = "", nmax = 1, quiet=TRUE);
 print(edad4);
@@ -75,7 +92,8 @@ scan(file = "", what = "", nmax = 1, quiet=TRUE);
 
 write.table(datos, file='simulacion.xls', sep="\t", row.names=FALSE)
 
-##Gerenaciï¿½n de grï¿½ficos actividad 4
+##Gerenación de gráficos actividad 4
+
 m <- matrix(1:8, 2, 4, byrow=TRUE);
 pdf('graficos actividad 3.pdf')
 layout(m);
@@ -83,12 +101,113 @@ hist(edad, main="Edad", col="red", xlab="edades", ylab="frecuencia");
 names(porsex) <- c('Varones', 'Mujeres')
 lbls <- paste(names(porsex), porsex)
 lbls <- paste(lbls, "%", sep="")
-pie(porsex, labels=lbls, main="Distribuciï¿½n alumnos", col=rainbow(length(lbls)))
+pie(porsex, labels=lbls, main="Distribución alumnos", col=rainbow(length(lbls)))
 hist(lic, main="Habitantes Hogar", col="blue", xlab="Alumnos con licencia", ylab="frecuencia")
 hist(phogar, main="Personas por hogar", col="red", xlab="Personas por hogar", ylab="frecuencia")
 hist(lhogar, main="Personas con licencia p/h", col="green", xlab="Personas con licencia p/h", ylab="frecuencia")
 hist(chogar, main="Personas que conducen p/h", col="brown", xlab="Personas que conducen p/h", ylab="frecuencia")
 hist(vhogar, main="Vehiculos motorizados p/h", col="yellow", xlab="Vehiculos motorizados p/h", ylab="frecuencia")
+
+
+
+##Generación de variables (Actividad 1)
+
+edad <- round(runif(n,14,15)); sexo <- trunc(rnorm(n,1,0.5)); lic <- rep(0,n); phogar <- round(rnorm(n,3,0.5)); lhogar <- round(rnorm(n,2,0.5)); chogar <- round(rnorm(n,2,0.5)); vhogar <- round(rnorm(n,2,0.5));
+for (i in seq(along=edad)){  ##Arreglando la variable sexo para que queden 1s y 0s
+	if ( sexo[i]>1 | sexo[i]<0) {
+		sexo[i] <- 0}
+};
+for (i in seq(along=lhogar)){  ##No permitir que existan más personas con licencia en el hogar que personas en el hogar
+	if (lhogar[i]>phogar[i]) { 
+		lhogar[i]=phogar[i]}
+};
+for (i in seq(along=vhogar)) { ##No permitir que existan personas que no conduzcan su propio auto.
+	if (vhogar[i]==0) {
+		chogar[i] <- 0}
+};
+
+sexonum <- sort(sexo); ##Ordenar por sexo
+sexocat <- factor(sexonum, labels=c("Masculino", "Femenino")); ##Creacion de variable categórica para la variable sexo
+porsex <- c(round((length(which(sexonum==1))/n)*100),round((length(which(sexonum<1))/n)*100));
+
+##Creación de data frame (Actividad 2)
+
+datos <- data.frame(EDAD=edad, SEXO=sexocat, LICENCIA=lic, HABITANTESHOGAR=phogar, LICENCIAHOGAR=lhogar, CONDUCTORESHOGAR=chogar, VEHICULOSHOGAR=vhogar);
+
+##Display de datos
+
+print(datos);
+
+##Calculo de datos actividad 4.
+
+porlhogar <- rep(0,n); porchogar <- rep(0,n)
+for (i in seq(along=porlhogar)) { ##Calculo aproximado de vector de porcentajes de personas que tienen licencia de conducir por hogar
+	porlhogar[i] <- round((lhogar[i]/phogar[i])*100)
+}
+for (i in seq(along=porchogar)) { ##Calculo aproximado de vector de porcentajes de personas que conducen por hogar
+	porchogar[i] <- round((chogar[i]/phogar[i])*100)
+}
+
+#Calculo de medianas y medias.
+
+edad4 <- c(round(mean(edad)),round(median(edad)));
+phogar4 <- c(round(mean(phogar)),round(median(phogar)));
+porlhogar4 <- c(round(mean(porlhogar)),round(median(porlhogar))); 
+porchogar4 <- c(round(mean(porchogar)),round(median(porchogar)));
+vhogar4 <- c(round(mean(vhogar)),round(median(vhogar))); 
+
+##Display de resultados
+
+print('La media y la mediana de las edades son:');
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+print(edad4);
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+
+print('La media y la mediana de la cantidad de habitantes por casa son:');
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+print(phogar4);
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+
+print('La media y la mediana de los porcentajes de personas por casa que tienen licencia de conducir son:');
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+print(porlhogar4);
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+
+print('La media y la mediana de los porcentajes de personas por casa que conducen a diario son:');
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+print(porchogar4);
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+
+print('La media y la mediana de la cantidad de vehiculos motorizados por hogar son:');
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+print(vhogar4);
+scan(file = "", what = "", nmax = 1, quiet=TRUE);
+
+##Exportar tabla de datos actividad 2
+
+write.table(datos, file='simulacion.xls', sep="\t", row.names=FALSE)
+
+##Gerenación de gráficos actividad 4
+
+m <- matrix(1:8, 2, 4, byrow=TRUE);
+pdf('graficos actividad 3.pdf')
+layout(m);
+hist(edad, main="Edad", col="red", xlab="edades", ylab="frecuencia");
+names(porsex) <- c('Varones', 'Mujeres')
+lbls <- paste(names(porsex), porsex)
+lbls <- paste(lbls, "%", sep="")
+pie(porsex, labels=lbls, main="Distribución alumnos", col=rainbow(length(lbls)))
+hist(lic, main="Habitantes Hogar", col="blue", xlab="Alumnos con licencia", ylab="frecuencia")
+hist(phogar, main="Personas por hogar", col="red", xlab="Personas por hogar", ylab="frecuencia")
+hist(lhogar, main="Personas con licencia p/h", col="green", xlab="Personas con licencia p/h", ylab="frecuencia")
+hist(chogar, main="Personas que conducen p/h", col="brown", xlab="Personas que conducen p/h", ylab="frecuencia")
+hist(vhogar, main="Vehiculos motorizados p/h", col="yellow", xlab="Vehiculos motorizados p/h", ylab="frecuencia")
+
+
+} else { cat('Por favor introduzca un valor correcto')} #Mensaje de error 
+
+
+
 
 
 
