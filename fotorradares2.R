@@ -68,7 +68,7 @@ covar2 <- 0
 for (i in seq(along=datos2)) { covar2 <- covar2 +((1/n)*((datos1[i]-media1))*((datos2[i]-media2)))}
 print ('la covarianza entre las variables fallecidos en accidentes de tránsito y parque automotriz es:')
 scan(file = "", what = "", nmax = 1, quiet=TRUE);
-print( '(1/n)* suma_i=1_i=N(((xi - media(xi))^2)*(yi - media(yi))^2 )');
+print( '(1/n)* suma_i=1_i=N(((xi - media(xi)))*(yi - media(yi)))');
 print(covar2)
 print('Aproximadamente:');
 print(round(covar2));
