@@ -60,7 +60,7 @@ if (identical(sexonum,rep(0,n))) { sexocat <- factor(sexonum, labels=c("Masculin
 else if (identical(sexonum,rep(1,n))) { sexocat <- factor(sexonum, labels=c("Femenino"))} #Arreglar error cuando son todos iguales.
 else {sexocat <- factor(sexonum, labels=c("Masculino", "Femenino"))}; #Creacion de variable categórica para la variable sexo
 porsex <- c(round((length(which(sexonum==1))/n)*100),round((length(which(sexonum<1))/n)*100)); #Vector con frecuencia porcentual de variable sexo
-frecsex <- porsex/100; #Vector con frecuencia absoluta de variable sexo
+#frecsex <- porsex/100; #Vector con frecuencia absoluta de variable sexo
 
 ##Creación de data frame (Actividad 2)
 datos <- data.frame(EDAD=edad, SEXO=sexocat, LICENCIA=lic, HABITANTESHOGAR=phogar, LICENCIAHOGAR=lhogar, CONDUCTORESHOGAR=chogar, VEHICULOSHOGAR=vhogar);
@@ -137,23 +137,21 @@ write.xlsx(fvhogar, file='Datos actividad 2.xls', sheet='Vehiculos por hogar', r
 
 ##Gerenación de gráficos actividad 4
 
-m <- matrix(1:8, 2, 4, byrow=TRUE);
-pdf('graficos actividad 3.pdf') #Generación de PDF reporte
-layout(m);
-hist(edad, main="Edad", col="red", xlab="edades", ylab="frecuencia"); #Histograma de edades
+pdf('gráficos actividad 3.pdf'); #Generación de PDF reporte
+hist(edad, main="Edad", col="red", xlab="Edades", ylab="Frecuencia"); #Histograma de edades
 names(porsex) <- c('Mujeres', 'Varones') #Torta edades
-lbls1 <- paste(names(porsex), porsex)
-lbls1 <- paste(lbls1, "%", sep="")
-pie(porsex, labels=lbls1, main="Distribución alumnos", col=rainbow(length(lbls1)))
+lbls1 <- paste(names(porsex), porsex);
+lbls1 <- paste(lbls1, "%", sep="");
+pie(porsex, labels=lbls1, main="Distribución alumnos", col=c('red', 'blue'));
 names(porlic) <- c('Con licencia','Sin licencia') #Torta licencia
 lbls2 <- paste(names(porlic),porlic);
 lbls2 <- paste(lbls2, "%", sep="");
-pie(porlic, labels=lbls2, main="Distribución licencia", col=rainbow(length(lbls2)))
-hist(phogar, main="Personas por hogar", col="red", xlab="Personas por hogar", ylab="frecuencia") #Histograma personas por hogar.
-hist(lhogar, main="Personas con licencia p/h", col="green", xlab="Personas con licencia p/h", ylab="frecuencia") #Histograma licencias por hogar.
-hist(chogar, main="Personas que conducen p/h", col="brown", xlab="Personas que conducen p/h", ylab="frecuencia") #Histograma conductores por hogar.
-hist(vhogar, main="Vehiculos motorizados p/h", col="yellow", xlab="Vehiculos motorizados p/h", ylab="frecuencia") #Histograma vehiculos motorizados por hogar.
-
+pie(porlic, labels=lbls2, main="Distribución licencia", col=c('green', 'yellow'));
+hist(phogar, main="Personas por hogar", col="red", xlab="Personas por hogar", ylab="Frecuencia") #Histograma personas por hogar.
+hist(lhogar, main="Personas con licencia p/h", col="green", xlab="Personas con licencia p/h", ylab="Frecuencia"); #Histograma licencias por hogar.
+hist(chogar, main="Personas que conducen p/h", col="brown", xlab="Personas que conducen p/h", ylab="Frecuencia"); #Histograma conductores por hogar.
+hist(vhogar, main="Vehiculos motorizados p/h", col="yellow", xlab="Vehiculos motorizados p/h", ylab="Frecuencia"); #Histograma vehiculos motorizados por hogar.
+dev.off();
 
 } else { cat('Por favor introduzca un valor correcto')}}#Mensaje de error.
 
