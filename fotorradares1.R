@@ -125,19 +125,19 @@ print(vhogar4);
 
 library(xlsx); # Cargar paquete xlsx
 
-write.xlsx(datos, file='Datos actividad 2.xls', sheet='Datos', row.names=FALSE); #Escribir pestaña datos.
-write.xlsx(fedad, file='Datos actividad 2.xls', sheet='Edad', row.names=FALSE, append=TRUE); #Escribir pestaña edad.
-write.xlsx(fsex, file='Datos actividad 2.xls', sheet='Sexo', row.names=FALSE, append=TRUE); #Escribir pestaña sexo.
-write.xlsx(flic, file='Datos actividad 2.xls', sheet='Licencia', row.names=FALSE, append=TRUE); #Escribir pestaña licencia.
-write.xlsx(fphogar, file='Datos actividad 2.xls', sheet='Personas por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña personas por hogar.
-write.xlsx(flhogar, file='Datos actividad 2.xls', sheet='Licencia por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña licencia por hogar.
-write.xlsx(fchogar, file='Datos actividad 2.xls', sheet='Conductores por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña conductores por hogar.
-write.xlsx(fvhogar, file='Datos actividad 2.xls', sheet='Vehiculos por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña vehiculo por hogar.
+write.xlsx(datos, file='Datos actividad 1-2.xls', sheet='Datos', row.names=FALSE); #Escribir pestaña datos.
+write.xlsx(fedad, file='Datos actividad 1-2.xls', sheet='Edad', row.names=FALSE, append=TRUE); #Escribir pestaña edad.
+write.xlsx(fsex, file='Datos actividad 1-2.xls', sheet='Sexo', row.names=FALSE, append=TRUE); #Escribir pestaña sexo.
+write.xlsx(flic, file='Datos actividad 1-2.xls', sheet='Licencia', row.names=FALSE, append=TRUE); #Escribir pestaña licencia.
+write.xlsx(fphogar, file='Datos actividad 1-2.xls', sheet='Personas por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña personas por hogar.
+write.xlsx(flhogar, file='Datos actividad 1-2.xls', sheet='Licencia por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña licencia por hogar.
+write.xlsx(fchogar, file='Datos actividad 1-2.xls', sheet='Conductores por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña conductores por hogar.
+write.xlsx(fvhogar, file='Datos actividad 1-2.xls', sheet='Vehiculos por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña vehiculo por hogar.
 
 
 ##Gerenación de gráficos actividad 4
 
-pdf('gráficos actividad 3.pdf'); #Generación de PDF reporte
+pdf('gráficos actividad 1-3.pdf'); #Generación de PDF reporte
 hist(edad, main="Edad", col="red", xlab="Edades", ylab="Frecuencia"); #Histograma de edades
 names(porsex) <- c('Mujeres', 'Varones') #Torta edades
 lbls1 <- paste(names(porsex), porsex);
