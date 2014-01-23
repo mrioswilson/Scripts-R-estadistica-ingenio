@@ -2,24 +2,24 @@
 
 rm(list=ls());
 
-#Mensaje de Bienvenida
+##Inicio interacciÃ³n con el usuario
 
-cat('Ingrese número de alumnos:')
+cat('Ingrese nï¿½mero de alumnos:')
 n <- as.numeric(scan(file = "", what = "", nmax = 1, quiet=TRUE))
 if (length(n)==0) { cat('Ingrese un valor correcto')} else { #Mensaje de error
-cat('Los códigos de los cursos son los siguientes:') 
+cat('Los cï¿½digos de los cursos son los siguientes:') 
 scan(file = "", what = "", nmax = 1, quiet=TRUE)
-cat('[1] 6° Básico, [2] 7° Básico, [3] 8° Básico')
+cat('[1] 6ï¿½ Bï¿½sico, [2] 7ï¿½ Bï¿½sico, [3] 8ï¿½ Bï¿½sico')
 scan(file = "", what = "", nmax = 1, quiet=TRUE)
-cat('[4] 1° Medio ,[5] 2° Medio, [6] 3° Medio Plan Común')
+cat('[4] 1ï¿½ Medio ,[5] 2ï¿½ Medio, [6] 3ï¿½ Medio Plan Comï¿½n')
 scan(file = "", what = "", nmax = 1, quiet=TRUE)
-cat('[7] 3° Medio Electivo, [8] 4° Medio Plan Común, [9] 4° Medio Electivo')
+cat('[7] 3ï¿½ Medio Electivo, [8] 4ï¿½ Medio Plan Comï¿½n, [9] 4ï¿½ Medio Electivo')
 scan(file = "", what = "", nmax = 1, quiet=TRUE)
-cat('Ingrese el código del curso de los alumnos:')
+cat('Ingrese el cï¿½digo del curso de los alumnos:')
 curso <- as.numeric(scan(file = "", what = "", nmax = 1, quiet=TRUE))
 if (length(curso)==0) {cat('Ingrese un valor correcto')} else if (curso %in% 1:9) { 
 
-##Generación de variables (Actividad 1)
+##Generaciï¿½n de variables (Actividad 1)
 
 cedad <- as.numeric(c(11,12,13,14,15,16,17,18,18)) # vector de edades promedio para generar variable edades
 
@@ -45,7 +45,7 @@ for (i in seq(along=sexo)){  ##Arreglando la variable sexo para que queden 1s y 
 	if ( sexo[i]>1 | sexo[i]<0) {
 		sexo[i] <- 0}
 };
-for (i in seq(along=lhogar)){  ##No permitir que existan más personas con licencia en el hogar que personas en el hogar
+for (i in seq(along=lhogar)){  ##No permitir que existan mï¿½s personas con licencia en el hogar que personas en el hogar
 	if (lhogar[i]>phogar[i]) { 
 		lhogar[i]=phogar[i]}
 };
@@ -58,14 +58,14 @@ sexonum <- sort(sexo); ##Ordenar por sexo
 for (i in seq(along=sexonum))
 if (identical(sexonum,rep(0,n))) { sexocat <- factor(sexonum, labels=c("Masculino"))} #Arreglar error cuando son todos iguales.
 else if (identical(sexonum,rep(1,n))) { sexocat <- factor(sexonum, labels=c("Femenino"))} #Arreglar error cuando son todos iguales.
-else {sexocat <- factor(sexonum, labels=c("Masculino", "Femenino"))}; #Creacion de variable categórica para la variable sexo
+else {sexocat <- factor(sexonum, labels=c("Masculino", "Femenino"))}; #Creacion de variable categï¿½rica para la variable sexo
 porsex <- c(round((length(which(sexonum==1))/n)*100),round((length(which(sexonum<1))/n)*100)); #Vector con frecuencia porcentual de variable sexo
 #frecsex <- porsex/100; #Vector con frecuencia absoluta de variable sexo
 
-##Creación de data frame (Actividad 2)
+##Creaciï¿½n de data frame (Actividad 2)
 datos <- data.frame(EDAD=edad, SEXO=sexocat, LICENCIA=lic, HABITANTESHOGAR=phogar, LICENCIAHOGAR=lhogar, CONDUCTORESHOGAR=chogar, VEHICULOSHOGAR=vhogar);
 
-#Creación de tablas de frecuencia y display (Actividad 2)
+#Creaciï¿½n de tablas de frecuencia y display (Actividad 2)
 
 fedad <- as.data.frame(table(edad)); fedad <- transform(fedad, Acfreq=cumsum(Freq), Abfreq=prop.table(Freq)); fedad <- transform(fedad, PorFrec=Abfreq*100); fedad <- transform(fedad, Ac.PorFrec=cumsum(PorFrec)); names(fedad) <- c('Edad', 'Frec', 'Ac. Frec', 'Abs. Frec', '% Frec', 'Ac. %Frec'); print(fedad);  
 fsex <- as.data.frame(table(sexocat)); fsex <- transform(fsex, Acfreq=cumsum(Freq), Abfreq=prop.table(Freq)); fsex <- transform(fsex, PorFrec=Abfreq*100); fsex <- transform(fsex, Ac.PorFrec=cumsum(PorFrec)); names(fsex) <- c('Sexo', 'Frec', 'Ac. Frec', 'Abs. Frec', '% Frec', 'Ac. %Frec'); print(fsex);
@@ -125,28 +125,28 @@ print(vhogar4);
 
 library(xlsx); # Cargar paquete xlsx
 
-write.xlsx(datos, file='Datos actividad 1-2.xls', sheet='Datos', row.names=FALSE); #Escribir pestaña datos.
-write.xlsx(fedad, file='Datos actividad 1-2.xls', sheet='Edad', row.names=FALSE, append=TRUE); #Escribir pestaña edad.
-write.xlsx(fsex, file='Datos actividad 1-2.xls', sheet='Sexo', row.names=FALSE, append=TRUE); #Escribir pestaña sexo.
-write.xlsx(flic, file='Datos actividad 1-2.xls', sheet='Licencia', row.names=FALSE, append=TRUE); #Escribir pestaña licencia.
-write.xlsx(fphogar, file='Datos actividad 1-2.xls', sheet='Personas por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña personas por hogar.
-write.xlsx(flhogar, file='Datos actividad 1-2.xls', sheet='Licencia por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña licencia por hogar.
-write.xlsx(fchogar, file='Datos actividad 1-2.xls', sheet='Conductores por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña conductores por hogar.
-write.xlsx(fvhogar, file='Datos actividad 1-2.xls', sheet='Vehiculos por hogar', row.names=FALSE, append=TRUE); #Escribir pestaña vehiculo por hogar.
+write.xlsx(datos, file='Datos actividad 1-2.xls', sheet='Datos', row.names=FALSE); #Escribir pestaï¿½a datos.
+write.xlsx(fedad, file='Datos actividad 1-2.xls', sheet='Edad', row.names=FALSE, append=TRUE); #Escribir pestaï¿½a edad.
+write.xlsx(fsex, file='Datos actividad 1-2.xls', sheet='Sexo', row.names=FALSE, append=TRUE); #Escribir pestaï¿½a sexo.
+write.xlsx(flic, file='Datos actividad 1-2.xls', sheet='Licencia', row.names=FALSE, append=TRUE); #Escribir pestaï¿½a licencia.
+write.xlsx(fphogar, file='Datos actividad 1-2.xls', sheet='Personas por hogar', row.names=FALSE, append=TRUE); #Escribir pestaï¿½a personas por hogar.
+write.xlsx(flhogar, file='Datos actividad 1-2.xls', sheet='Licencia por hogar', row.names=FALSE, append=TRUE); #Escribir pestaï¿½a licencia por hogar.
+write.xlsx(fchogar, file='Datos actividad 1-2.xls', sheet='Conductores por hogar', row.names=FALSE, append=TRUE); #Escribir pestaï¿½a conductores por hogar.
+write.xlsx(fvhogar, file='Datos actividad 1-2.xls', sheet='Vehiculos por hogar', row.names=FALSE, append=TRUE); #Escribir pestaï¿½a vehiculo por hogar.
 
 
-##Gerenación de gráficos actividad 4
+##Gerenaciï¿½n de grï¿½ficos actividad 4
 
-pdf('gráficos actividad 1-3.pdf'); #Generación de PDF reporte
+pdf('grï¿½ficos actividad 1-3.pdf'); #Generaciï¿½n de PDF reporte
 hist(edad, main="Edad", col="red", xlab="Edades", ylab="Frecuencia"); #Histograma de edades
 names(porsex) <- c('Mujeres', 'Varones') #Torta edades
 lbls1 <- paste(names(porsex), porsex);
 lbls1 <- paste(lbls1, "%", sep="");
-pie(porsex, labels=lbls1, main="Distribución alumnos", col=c('red', 'blue'));
+pie(porsex, labels=lbls1, main="Distribuciï¿½n alumnos", col=c('red', 'blue'));
 names(porlic) <- c('Con licencia','Sin licencia') #Torta licencia
 lbls2 <- paste(names(porlic),porlic);
 lbls2 <- paste(lbls2, "%", sep="");
-pie(porlic, labels=lbls2, main="Distribución licencia", col=c('green', 'yellow'));
+pie(porlic, labels=lbls2, main="Distribuciï¿½n licencia", col=c('green', 'yellow'));
 hist(phogar, main="Personas por hogar", col="red", xlab="Personas por hogar", ylab="Frecuencia") #Histograma personas por hogar.
 hist(lhogar, main="Personas con licencia p/h", col="green", xlab="Personas con licencia p/h", ylab="Frecuencia"); #Histograma licencias por hogar.
 hist(chogar, main="Personas que conducen p/h", col="brown", xlab="Personas que conducen p/h", ylab="Frecuencia"); #Histograma conductores por hogar.
