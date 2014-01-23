@@ -64,7 +64,7 @@ print(devs2);
 print('Aproximadamente:');
 print(round(devs2));
 scan(file = "", what = "", nmax = 1, quiet=TRUE);
-covar2 <- 0 #calcular covarianza directamente
+covar2 <- 0 #Calcular covarianza directamente
 for (i in seq(along=datos2)) { covar2 <- covar2 +((1/n)*((datos1[i]-media1))*((datos2[i]-media2)))}
 print ('la covarianza entre las variables fallecidos en accidentes de tr�nsito y parque automotriz es:')
 scan(file = "", what = "", nmax = 1, quiet=TRUE);
@@ -74,7 +74,7 @@ print('Aproximadamente:');
 print(round(covar2));
 scan(file = "", what = "", nmax = 1, quiet=TRUE);
 print ('el coeficiente de correlaci�n lineal (R) entre las variables fallecidos en accidentes de tr�nsito y parque automotriz es:')
-r2 <- covar2/(devs1*devs2); #calcular coeficiente de correlación lineal directamente
+r2 <- covar2/(devs1*devs2); #Calcular coeficiente de correlación lineal directamente
 print(r2)
 print('Aproximadamente:');
 print(round(r2));
