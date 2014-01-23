@@ -43,7 +43,7 @@ tabla2 <- data.frame(col1,col2,col3,col4,col5,col6,col7,col8,col9,col10); #Parqu
 datos2 <- as.numeric(c(col1[2],col2[2],col3[2],col4[2],col5[2],col6[2],col7[2],col8[2],col9[2],col10[2])) #Parque Vehicular
 
 
-#Obtención de media, desviación estándar y correlación (Actividade 2.5) (Calculo y display)
+#Obtención de media, desviación estándar y correlación (Actividades 2.5) (Calculo y display)
 
 n <- length(datos1) # numero total de datos
 var2 <- 0 #Contador para la varianza
@@ -73,7 +73,19 @@ print(covar2)
 print('Aproximadamente:');
 print(round(covar2));
 scan(file = "", what = "", nmax = 1, quiet=TRUE);
+print ('el coeficiente de correlación lineal (R) entre las variables fallecidos en accidentes de tránsito y parque automotriz es:')
+r2 <- covar2/(devs1*devs2);
+print(r2)
+print('Aproximadamente:');
+print(round(r2));
+print('R^2 cercano a 0 implica que la correlación lineal es nula');
+modelo <- lm(datos1~datos2); #Ajustar modelo lineal
 
+#Generar gráfico en PDF
+pdf('gráfico actividad 2-5.pdf');
+plot(datos1~datos2, xlab='Parque Automotriz 2000-2009 por año', ylab='Fallecidos en accidentes de tránsito 2000-2009 por año', main='Fallecidos accidentes de tránsito v/s Parque automotriz (2000-2009)');
+abline(modelo);
+grid();
 
 
 
